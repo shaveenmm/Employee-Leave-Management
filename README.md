@@ -33,28 +33,6 @@ A leave management system for small and mid-sized businesses, built with **C#**,
 | Data access | ODP.NET (Oracle.ManagedDataAccess.Core) |
 | Tools | Visual Studio, Oracle SQL Developer, Git and GitHub |
 
-## Database design
-
-```mermaid
-erDiagram
-    EMPLOYEE ||--o{ EMPLOYEE : manages
-    EMPLOYEE ||--o{ LEAVE_REQUEST : submits
-    EMPLOYEE ||--o{ LEAVE_BALANCE : has
-    LEAVE_TYPE ||--o{ LEAVE_REQUEST : categorises
-    LEAVE_TYPE ||--o{ LEAVE_BALANCE : defines
-    LEAVE_REQUEST ||--o{ LEAVE_AUDIT : logs
-```
-
-| Table | Purpose |
-|---|---|
-| `EMPLOYEE` | Staff, their department, role and line manager |
-| `LEAVE_TYPE` | Annual, sick, family responsibility and study leave |
-| `LEAVE_BALANCE` | Days remaining per employee, leave type and year |
-| `PUBLIC_HOLIDAY` | Dates excluded from working-day counts |
-| `LEAVE_REQUEST` | Requests and their status (pending, approved, rejected, cancelled) |
-| `LEAVE_AUDIT` | History of status changes |
-
-Stored procedures: `sp_submit_leave`, `sp_approve_leave`, `sp_reject_leave`, `sp_cancel_leave`, plus the function `fn_working_days`.
 
 ## Project structure
 
