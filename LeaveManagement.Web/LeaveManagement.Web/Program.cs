@@ -1,3 +1,5 @@
+using LeaveManagement.Web.Data;
+
 namespace LeaveManagement.Web
 {
     public class Program
@@ -8,6 +10,11 @@ namespace LeaveManagement.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            /* The factory only holds the connection string, so one shared
+               instance is enough. Each data access call asks it for its own
+               short-lived connection. */
+            builder.Services.AddSingleton<IOracleConnectionFactory, OracleConnectionFactory>();
 
             var app = builder.Build();
 
