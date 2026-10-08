@@ -1,4 +1,5 @@
 using LeaveManagement.Web.Data;
+using LeaveManagement.Web.Services;
 
 namespace LeaveManagement.Web
 {
@@ -15,6 +16,11 @@ namespace LeaveManagement.Web
                instance is enough. Each data access call asks it for its own
                short-lived connection. */
             builder.Services.AddSingleton<IOracleConnectionFactory, OracleConnectionFactory>();
+
+            /* The leave service keeps no state between calls, and a new one
+               per request is the usual lifetime for services that use the
+               database. */
+            builder.Services.AddScoped<ILeaveService, LeaveService>();
 
             var app = builder.Build();
 
